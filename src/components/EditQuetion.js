@@ -115,8 +115,14 @@ export default function ADDTEMA({StatusTheme, CancelarS, datas ,Status}) {
         return
     }
 
+    let n_opcoes = 0;
+
+    if (opcao1.trim() !== "") n_opcoes++;
+    if (opcao2.trim() !== "") n_opcoes++;
+    if (opcao3.trim() !== "") n_opcoes++;
+
     else if(questao.trim() == "" || alternativa_correta.trim() == ""
-        || opcao1.trim() == "" || opcao2.trim() == "" || opcao3.trim() == ""){
+        || n_opcoes < 2 ){
         setstatusText(true)
         alert("É obrigatório o preenchimento de todos campos")
         return
@@ -217,6 +223,7 @@ export default function ADDTEMA({StatusTheme, CancelarS, datas ,Status}) {
                     id="nome"
                     label="Opção 1"
                     fullWidth
+                    required
                     value={opcao1}
                     onChange={e => setopcao1(e.target.value)}
                     error={opcao1 < 1 && statusText==true}
@@ -227,6 +234,7 @@ export default function ADDTEMA({StatusTheme, CancelarS, datas ,Status}) {
                     id="nome"
                     label="Opção 2"
                     fullWidth
+                    required
                     value={opcao2}
                     onChange={e => setopcao2(e.target.value)}
                     error={opcao2 < 1 && statusText==true}
@@ -237,10 +245,9 @@ export default function ADDTEMA({StatusTheme, CancelarS, datas ,Status}) {
                     id="nome"
                     label="Opção 3"
                     fullWidth
-                    required
                     value={opcao3}
                     onChange={e => setopcao3(e.target.value)}
-                    error={opcao3 < 1 && statusText==true}
+                    // error={opcao3 < 1 && statusText==true}
                 />
 
 
